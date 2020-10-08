@@ -1,7 +1,7 @@
 package com.nickolay.testtask65app
 
 import android.app.Application
-import com.nickolay.testtask65app.data.roomdb.DbRoom
+import com.nickolay.testtask65app.data.DbRoom
 
 class App: Application() {
 

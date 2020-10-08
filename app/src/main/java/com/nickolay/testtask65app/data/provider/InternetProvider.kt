@@ -12,23 +12,23 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-object ThreadProvider {
+class InternetProvider: DataProvider {
 
     //Можно конечно сделать через Retrofit или Okhttp но пока достаточно этого и не стоит пладить зависимостей где это не требуется
-    //Ошибка Cleartext HTTP traffic not permitted - пока решена добавлением `s` к протоколу
+    //Ошибка Cleartext HTTP traffic not permitted - пока решена добавлением `s` к протоколу более верно дописать android:networkSecurityConfig
 
-    private val URl = URL("https://gitlab.65apps.com/65gb/static/raw/master/testTask.json")
-    private const val TIMEOUT = 10000
-    private const val METHOD = "GET"
+    private val url = URL("https://gitlab.65apps.com/65gb/static/raw/master/testTask.json")
+    private val timeout = 10000
+    private val method = "GET"
 
-    fun getAllEmployees() : ReceiveChannel<DatasResult> = Channel<DatasResult>(
+    override fun getInternetData(): ReceiveChannel<DatasResult> = Channel<DatasResult>(
         Channel.CONFLATED).apply {
         //TODO: Check connection, if have not internet show "no intenet view"
 
         Thread {
-            val connection: HttpURLConnection = (URl.openConnection() as HttpURLConnection).apply{
-                requestMethod = METHOD
-                connectTimeout = TIMEOUT
+            val connection: HttpURLConnection = (url.openConnection() as HttpURLConnection).apply{
+                requestMethod = method
+                connectTimeout = timeout
             }
             try {
                 val inStream = BufferedReader(InputStreamReader(connection.inputStream))
@@ -53,4 +53,6 @@ object ThreadProvider {
             }
         }.start()
     }
+
+
 }

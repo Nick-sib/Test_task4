@@ -1,4 +1,4 @@
-package com.nickolay.testtask65app.data.roomdb
+package com.nickolay.testtask65app.data
 
 import android.content.Context
 import androidx.room.Database
