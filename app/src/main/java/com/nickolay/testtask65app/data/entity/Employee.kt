@@ -1,10 +1,8 @@
-package com.nickolay.testtask65app.data
-
-import java.util.*
+package com.nickolay.testtask65app.data.entity
 
 data class Employee(
     val f_name: String,
     val l_name: String,
-    val birthday: Date,
+    val birthday: String,
     val avatr_url: String,
     val specialty: Array<Specialty>)
