@@ -19,11 +19,10 @@ abstract class DbRoom : RoomDatabase()  {
         var INSTANCE: DbRoom? = null
         fun getDatabase(context: Context) =
             INSTANCE ?: synchronized(this) {
-
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DbRoom::class.java,
-                    "word_database"
+                    "work_database"
                 )
                     .build()
                 INSTANCE = instance
