@@ -11,7 +11,7 @@ interface EmployeesDao {
     fun insert(employeesModel: EmployeesModel)
 
     @Query("SELECT * FROM employees_table WHERE specialtyId =:idSpecialty ORDER BY f_name")
-    fun geEmployees(idSpecialty: Int): List<EmployeesModel>
+    fun getEmployees(idSpecialty: Int): List<EmployeesModel>
 
     @Query("DELETE FROM employees_table")
     fun deleteAll()
