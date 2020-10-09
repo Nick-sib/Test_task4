@@ -7,9 +7,9 @@ import com.nickolay.testtask65app.data.entity.Specialty
 @Entity(tableName = "employees_table")
 data class EmployeesModel(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Long? = null,
     val f_name: String,
     val l_name: String,
     val birthday: String,
-    val avatr_url: String,
-    val specialtyId:Long)
+    val avatr_url: String
+)

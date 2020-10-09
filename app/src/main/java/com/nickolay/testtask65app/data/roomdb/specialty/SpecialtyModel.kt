@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "specialty_table")
 class SpecialtyModel (
     @PrimaryKey
-    val specialtyId: Int,
-    val specialtyName: String)
+    val specialtyId: Long,
+    val specialtyName: String
+)

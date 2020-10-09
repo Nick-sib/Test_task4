@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface SpecialtyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSpecialty(specialtyModel: SpecialtyModel)
+    fun insert(specialtyModel: SpecialtyModel): Long
 
     @Query("SELECT *  FROM specialty_table ORDER BY specialtyName")
     fun getSpecialty(): List<SpecialtyModel>
