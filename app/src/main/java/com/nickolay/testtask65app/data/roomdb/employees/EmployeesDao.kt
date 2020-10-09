@@ -13,6 +13,6 @@ interface EmployeesDao {
 //    @Query("SELECT * FROM employees_table WHERE specialtyId =:idSpecialty ORDER BY f_name")
 //    fun getEmployees(idSpecialty: Int): List<EmployeesModel>
 //
-//    @Query("DELETE FROM employees_table")
-//    fun deleteAll()
+    @Query("DELETE FROM employees_table")
+    fun deleteAll()
 }

@@ -43,13 +43,16 @@ class DataRepository {
             )
         )
 
+    fun clearAllDatas(){
+        dbEmployees.deleteAll()
+        dbSpecialty.deleteAll()
+        dbCrossTab.deleteAll()
+    }
+
+    fun getAllSpecialtys() = dbSpecialty.getSpecialty()
+
 //    suspend fun getEmployees(specialtyId: Int) =
 //        dbProvider.getEmployeesDao().getEmployees(specialtyId)
-    fun getAllSpecialty(){
-
-        Log.d("myLOG", "getAllSpecialty: ")
-        //return dbProvider.getSpecialtyDao().getSpecialty()
-    }
 
 
 

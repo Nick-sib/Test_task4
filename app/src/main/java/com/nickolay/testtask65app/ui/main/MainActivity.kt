@@ -1,24 +1,26 @@
 package com.nickolay.testtask65app.ui.main
 
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
-import com.nickolay.testtask65app.App
 import com.nickolay.testtask65app.R
-
-
-class MainActivity : AppCompatActivity() {
-
-     val viewModel = MainViewModel()
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+import com.nickolay.testtask65app.data.DataRepository
+import com.nickolay.testtask65app.data.roomdb.employees.EmployeesModel
+import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
+import com.nickolay.testtask65app.ui.base.BaseActivity
 
 
 
+class MainActivity : BaseActivity<List<SpecialtyModel>>() {
+
+    override val layoutRes = R.layout.activity_main
+
+    override val viewModel: MainViewModel by lazy {
+        MainViewModel()
+    }
+
+
+    override fun renderSpeciality(data: List<SpecialtyModel>) {
+        Log.d("myLOG", "data = $data")
 
     }
 }
