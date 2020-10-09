@@ -1,4 +1,4 @@
-package com.nickolay.testtask65app.ui
+package com.nickolay.testtask65app.ui.main
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -10,11 +10,14 @@ import com.nickolay.testtask65app.R
 
 class MainActivity : AppCompatActivity() {
 
+     val viewModel = MainViewModel()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d("myLOG", "database = ${App.instance.database.getEmployeesDao()}")
+
 
 
     }
