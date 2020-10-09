@@ -3,6 +3,8 @@ package com.nickolay.testtask65app.ui.main
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.nickolay.testtask65app.R
 import com.nickolay.testtask65app.data.DataRepository
@@ -18,7 +20,7 @@ class MainActivity : BaseActivity<List<SpecialtyModel>>() {
     override val layoutRes = R.layout.activity_main
 
     override val viewModel: MainViewModel by lazy {
-        MainViewModel()
+        ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,6 +1,5 @@
 package com.nickolay.testtask65app.data
 
-import android.util.Log
 import com.nickolay.testtask65app.App
 import com.nickolay.testtask65app.data.entity.Employees
 import com.nickolay.testtask65app.data.provider.DataProvider

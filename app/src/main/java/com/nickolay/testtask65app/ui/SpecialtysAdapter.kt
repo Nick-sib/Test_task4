@@ -22,7 +22,7 @@ class SpecialtysAdapter(fm: FragmentManager) :
 
 
     override fun getItem(position: Int): Fragment {
-        return EmployeesFragment.newInstance(specialtys[position].specialtyName)
+        return EmployeesFragment.newInstance(specialtys[position].specialtyId)
     }
 
     override fun getPageTitle(position: Int) = specialtys[position].specialtyName

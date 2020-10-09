@@ -24,7 +24,6 @@ abstract class BaseActivity<T>: AppCompatActivity(), CoroutineScope {
 
     private lateinit var dataSpecialty: Job
 
-    private lateinit var dataJob: Job
     private lateinit var errorJob: Job
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,9 +50,9 @@ abstract class BaseActivity<T>: AppCompatActivity(), CoroutineScope {
     }
 
     override fun onStop() {
-        super.onStop()
-        dataJob.cancel()
+        dataSpecialty.cancel()
         errorJob.cancel()
+        super.onStop()
     }
 
 

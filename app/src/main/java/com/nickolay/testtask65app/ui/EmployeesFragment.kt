@@ -1,11 +1,12 @@
 package com.nickolay.testtask65app.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nickolay.testtask65app.R
 import kotlinx.android.synthetic.main.fragment_employees.*
 import kotlinx.android.synthetic.main.fragment_employees.view.*
@@ -17,6 +18,9 @@ class EmployeesFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //создадим ViewModel
+
+
 
     }
 
@@ -26,7 +30,14 @@ class EmployeesFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_employees, container, false)
-        root.section_label.text = arguments?.getString(ARG_SECTION_NUMBER) ?: "err"
+        //root.section_label.text = arguments?.getLong(ARG_SECTION_NUMBER).toString() ?: "err"
+
+        this.context?.let {
+
+            root.recyclerView.adapter = EmployeesAdapter {
+                    Log.d("myLOG", "click ${it.f_name}: ")
+                }
+        }
         return root
     }
 
@@ -35,10 +46,10 @@ class EmployeesFragment: Fragment() {
         private const val ARG_SECTION_NUMBER = "section_number"
 
         @JvmStatic
-        fun newInstance(sectionNumber: String): EmployeesFragment {
+        fun newInstance(specialtyId: Long): EmployeesFragment {
             return EmployeesFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_SECTION_NUMBER, sectionNumber)
+                    putLong(ARG_SECTION_NUMBER, specialtyId)
                 }
             }
         }
