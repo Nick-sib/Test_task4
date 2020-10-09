@@ -13,8 +13,8 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.consumeEach
 
 
-//@ObsoleteCoroutinesApi
-//@ExperimentalCoroutinesApi
+@ObsoleteCoroutinesApi
+@ExperimentalCoroutinesApi
 class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
 
     private val dataRepository = DataRepository()
