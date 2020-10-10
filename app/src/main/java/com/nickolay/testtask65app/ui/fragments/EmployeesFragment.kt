@@ -37,9 +37,9 @@ class EmployeesFragment: Fragment(), CoroutineScope {
         super.onStart()
         dataEmployees = launch {
             viewModel.getData().consumeEach {
-                //(recyclerView.adapter as EmployeesAdapter).data = it
+                (recyclerView.adapter as EmployeesAdapter).data = it
 
-                Log.d("myLOG", "$it")
+                //Log.d("myLOG", "$it")
             }
         }
     }

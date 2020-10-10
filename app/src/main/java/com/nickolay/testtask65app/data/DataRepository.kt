@@ -58,7 +58,7 @@ object DataRepository {
     fun getAllSpecialtys() = dbSpecialty.getSpecialty()
 
     suspend fun getEmployeesById(id: Long): List<EmployeesModel> = suspendCoroutine{
-        it.resume(dbCrossTab.getEmployees(id) as List<EmployeesModel>)
+        it.resume(dbEmployees.getEmployees(id))
     }
 
 
