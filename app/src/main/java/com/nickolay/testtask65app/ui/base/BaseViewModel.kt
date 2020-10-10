@@ -15,7 +15,6 @@ open class BaseViewModel <T>: ViewModel(), CoroutineScope {
 
 
     private val dataChannel = BroadcastChannel<T>(Channel.CONFLATED)
-
     private val errorChannel = Channel<Throwable>()
 
     fun getData(): ReceiveChannel<T> = dataChannel.openSubscription()

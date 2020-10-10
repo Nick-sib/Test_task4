@@ -16,7 +16,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 
-object DataRepository {
+object DataAPI {
 
     private val internetProvider: DataProvider by lazy {
         InternetProvider()

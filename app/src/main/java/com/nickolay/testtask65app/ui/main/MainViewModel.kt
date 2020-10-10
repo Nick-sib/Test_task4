@@ -1,7 +1,7 @@
 package com.nickolay.testtask65app.ui.main
 
 import androidx.annotation.VisibleForTesting
-import com.nickolay.testtask65app.data.DataRepository
+import com.nickolay.testtask65app.data.DataAPI
 import com.nickolay.testtask65app.data.entity.Employee
 import com.nickolay.testtask65app.data.model.DatasResult
 import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
@@ -19,8 +19,7 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
 
     //private val dataRepository = DataRepository()
 
-    private val internetChanel = DataRepository.loadAllData()
-
+    private val internetChanel = DataAPI.loadAllData()
 
     init {
         launch {
@@ -36,23 +35,27 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
 
     fun formatInternetDataToDb(data: List<Employee>) {
         //Можно показать сообщение что данные загружены и сохраняются на локальном устройстве
-        DataRepository.clearAllDatas()
+        DataAPI.clearAllDatas()
         data.forEach {
-            val employee_id =
-                DataRepository.addEmployee(
+            val employeeId =
+                DataAPI.addEmployee(
                     it.f_name.dbNameFormat(),
                     it.l_name.dbNameFormat(),
                     it.birthday.dbDataFormat(),
                     it.avatr_url.dbURLFormat()
                 )
             it.specialty.forEach { specialty ->
-                val specialtyID = DataRepository.addSpecialty(specialty.specialty_id, specialty.name)
-                DataRepository.addCrossData(employee_id, specialtyID)
+                val specialtyID = DataAPI.addSpecialty(specialty.specialty_id, specialty.name)
+                DataAPI.addCrossData(employeeId, specialtyID)
             }
         }
 
         launch {
-            setData(DataRepository.getAllSpecialtys())
+            val result = DataAPI.getAllSpecialtys()
+            if (result.isEmpty())
+                setError(Throwable("EMPTY DATA"))
+            else
+                setData(result)
         }
     }
 
