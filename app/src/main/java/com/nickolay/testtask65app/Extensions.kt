@@ -47,9 +47,15 @@ fun String.getAge() =
 
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun getAge26(value: String) = LocalDate.parse(value, DateTimeFormatter.ofPattern(DATEFORMAT))?.let {
-    "${Period.between(it, LocalDate.now()).years} лет"
-} ?: defBirthday
+fun getAge26(value: String) = try {
+    LocalDate.parse(value, DateTimeFormatter.ofPattern(DATEFORMAT))?.let {
+        "${Period.between(it, LocalDate.now()).years} лет"
+    } ?: defBirthday
+} catch (e: Exception) {
+    defBirthday
+}
+
+
 
 @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 fun getAge14(value: String) = try {
