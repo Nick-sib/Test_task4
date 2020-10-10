@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nickolay.testtask65app.R
 import com.nickolay.testtask65app.data.roomdb.employees.EmployeesModel
+import com.nickolay.testtask65app.getAge
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_employees.view.*
 
@@ -28,8 +29,8 @@ class EmployeesAdapter (val onItemClick: ((EmployeesModel) -> Unit)? = null) :
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
         fun bind(employe: EmployeesModel) {
-            containerView.tvName.text = employe.f_name
-
+            containerView.tvName.text = "${employe.f_name} ${employe.l_name}"
+            containerView.tvAge.text = employe.birthday.getAge()
 
             itemView.setOnClickListener {
                 onItemClick?.invoke(employe)
