@@ -3,8 +3,9 @@ package com.nickolay.testtask65app.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.nickolay.testtask65app.R
-import com.nickolay.testtask65app.ui.fragments.SpecialtysFragment
+import com.nickolay.testtask65app.ui.fragments.SpecialtiesFragment
 
 
 class MainActivity : AppCompatActivity() {//BaseActivity<List<SpecialtyModel>>() {
@@ -18,22 +19,25 @@ class MainActivity : AppCompatActivity() {//BaseActivity<List<SpecialtyModel>>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        instance = this
 
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
-            .replace(
-                R.id.fragmentContainer,
-                SpecialtysFragment.newInstance())
-            .commit()
-
-
-//        view_pager.adapter = SpecialtysAdapter(supportFragmentManager)
+        showFragment("ListData", SpecialtiesFragment.newInstance())
 
 
     }
 
-//    override fun renderSpeciality(data: List<SpecialtyModel>) {
-//        (view_pager.adapter as SpecialtysAdapter).specialtys = data
-//    }
+    fun showFragment(backStack: String, fragment: Fragment){
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack("ListData")
+            .replace(
+                R.id.fragmentContainer,
+                fragment)
+            .commit()
+    }
+
+    companion object {
+        lateinit var instance : MainActivity
+            private set
+    }
 }

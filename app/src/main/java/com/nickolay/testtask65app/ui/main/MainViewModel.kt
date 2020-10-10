@@ -19,6 +19,8 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
 
     //private val dataRepository = DataRepository()
 
+    var dataModel:List<SpecialtyModel> = emptyList()
+
     private val internetChanel = DataAPI.loadAllData()
 
     init {
@@ -51,11 +53,13 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
         }
 
         launch {
-            val result = DataAPI.getAllSpecialtys()
+            val result = DataAPI.getAllSpecialties()
             if (result.isEmpty())
                 setError(Throwable("EMPTY DATA"))
-            else
+            else {
+                dataModel = result
                 setData(result)
+            }
         }
     }
 

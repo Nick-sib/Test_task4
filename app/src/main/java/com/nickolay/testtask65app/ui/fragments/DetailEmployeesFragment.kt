@@ -1,20 +1,20 @@
 package com.nickolay.testtask65app.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.nickolay.testtask65app.R
+import com.nickolay.testtask65app.data.roomdb.employees.EmployeesModel
+import com.nickolay.testtask65app.ui.base.BaseFragment
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_detail_employees.*
 import kotlinx.android.synthetic.main.fragment_detail_employees.view.*
 
+class DetailEmployeesFragment: BaseFragment<List<String>>() {
 
-//стоит вынести часть функционала в BaseFragment
-class DetailEmployeesFragment : Fragment() {
-
-    val viewModel: DetailFragmentViewModel by lazy {
+    override val viewModel: DetailFragmentViewModel by lazy {
         ViewModelProvider(this).get(DetailFragmentViewModel::class.java)
     }
 
@@ -24,25 +24,47 @@ class DetailEmployeesFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_detail_employees, container, false)
 
-        val id = arguments?.getLong(ARG_SECTION_NUMBER)
-        id?.apply {
-            viewModel.id = this
-            root.tv.text = this.toString()
+        val data = arguments?.getParcelable<EmployeesModel>(EXTRA_DATA)
+        data?.apply {
+            viewModel.id = id
+        }
+        data?.apply {
+            root.tvFName.text = f_name
+            root.tvLName.text = l_name
+            root.tvBirthday.text = birthday
+            if (avatr_url.isNotBlank()) {
+                Picasso.get()
+                    .load(avatr_url)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.ic_non_image_24)
+                    .fit()
+                    .into(root.ivEmployees)
+            }
         }
         return root
     }
 
+    override fun renderData(data: List<String>) {
+
+        tvSpecialties.text =
+            data.toString()
+                .removePrefix("[")
+                .removeSuffix("]")
+    }
 
     companion object {
-        private const val ARG_SECTION_NUMBER = "section_number"
+        private val EXTRA_DATA = DetailEmployeesFragment::class.java.name + "extra.DATA"
 
         @JvmStatic
-        fun newInstance(specialtyId: Long): EmployeesFragment {
-            return EmployeesFragment().apply {
+        fun newInstance(employeeData: EmployeesModel) =
+            DetailEmployeesFragment().apply {
                 arguments = Bundle().apply {
-                    putLong(ARG_SECTION_NUMBER, specialtyId)
+                    putParcelable(EXTRA_DATA, employeeData)
                 }
             }
-        }
+
     }
+
+
+
 }

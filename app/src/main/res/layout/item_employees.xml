@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tvFName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/cardview_dark_background"
@@ -41,7 +41,7 @@
             android:layout_margin="10dp"
 
             app:layout_constraintStart_toEndOf="@+id/ivEmployees"
-            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvFName"
             tools:text="100 лет" />
 
 

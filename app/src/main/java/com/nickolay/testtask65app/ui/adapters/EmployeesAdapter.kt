@@ -30,9 +30,9 @@ class EmployeesAdapter (val onItemClick: ((EmployeesModel) -> Unit)? = null) :
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
         fun bind(employee: EmployeesModel) {
-            containerView.tvName.text = "${employee.f_name} ${employee.l_name}"
+            containerView.tvFName.text = "${employee.f_name} ${employee.l_name}"
             containerView.tvAge.text = employee.birthday.getAge()
-            if (employee.avatr_url.length > 5) {
+            if (employee.avatr_url.isNotBlank()) {
                 Picasso.get()
                     .load(employee.avatr_url)
                     .placeholder(R.drawable.placeholder)

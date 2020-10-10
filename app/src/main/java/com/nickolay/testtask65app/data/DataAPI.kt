@@ -55,13 +55,13 @@ object DataAPI {
         dbCrossTab.deleteAll()
     }
 
-    fun getAllSpecialtys() = dbSpecialty.getSpecialty()
+    fun getAllSpecialties() = dbSpecialty.getSpecialty()
 
     suspend fun getEmployeesById(id: Long): List<EmployeesModel> = suspendCoroutine{
         it.resume(dbEmployees.getEmployees(id))
     }
 
-
+    fun getUserSpecialties(EmployeeId: Long) = dbCrossTab.getUserSpecialties(EmployeeId)
 
 
 }

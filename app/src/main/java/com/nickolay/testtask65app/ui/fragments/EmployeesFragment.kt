@@ -5,23 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.nickolay.testtask65app.R
-import com.nickolay.testtask65app.data.entity.Employees
 import com.nickolay.testtask65app.data.roomdb.employees.EmployeesModel
 import com.nickolay.testtask65app.ui.adapters.EmployeesAdapter
-import com.nickolay.testtask65app.ui.adapters.SpecialtysAdapter
 import com.nickolay.testtask65app.ui.base.BaseFragment
-import com.nickolay.testtask65app.ui.main.MainViewModel
+import com.nickolay.testtask65app.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_employees.*
 import kotlinx.android.synthetic.main.fragment_employees.view.*
-import kotlinx.android.synthetic.main.fragment_specialtys.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.consumeEach
-import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class EmployeesFragment: BaseFragment<List<EmployeesModel>>() {
@@ -49,15 +42,19 @@ class EmployeesFragment: BaseFragment<List<EmployeesModel>>() {
 
         val root = inflater.inflate(R.layout.fragment_employees, container, false)
         this.context?.let {
-            root.recyclerView.adapter = EmployeesAdapter {
-                    Log.d("myLOG", "click ${it.f_name}: ")
-                }
+            root.recyclerView.adapter = EmployeesAdapter{
+
+                MainActivity.instance.showFragment("DetailData", DetailEmployeesFragment.newInstance(it))
+            }
         }
+
+
         return root
     }
 
+
     companion object {
-        private val EXTRA_DATA = SpecialtysFragment::class.java.name + "extra.DATA"
+        private val EXTRA_DATA = SpecialtiesFragment::class.java.name + "extra.DATA"
 
         @JvmStatic
         fun newInstance(specialtyId: Long) =

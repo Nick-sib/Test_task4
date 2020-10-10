@@ -8,7 +8,7 @@ import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
 import com.nickolay.testtask65app.ui.fragments.EmployeesFragment
 
 
-class SpecialtysAdapter(fm: FragmentManager) :
+class SpecialtiesAdapter(fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     var specialtys: List<SpecialtyModel> = listOf()
