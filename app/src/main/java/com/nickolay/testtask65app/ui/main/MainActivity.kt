@@ -6,16 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.nickolay.testtask65app.R
 import com.nickolay.testtask65app.ui.fragments.SpecialtiesFragment
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 
 
-class MainActivity : AppCompatActivity() {//BaseActivity<List<SpecialtyModel>>() {
+class MainActivity : AppCompatActivity() {
 
-
-
-//    override val viewModel: MainViewModel by lazy {
-//        ViewModelProvider(this).get(MainViewModel::class.java)
-//    }
-
+    @ExperimentalCoroutinesApi
+    @ObsoleteCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity() {//BaseActivity<List<SpecialtyModel>>()
     fun showFragment(backStack: String, fragment: Fragment){
         supportFragmentManager
             .beginTransaction()
-            .addToBackStack("ListData")
+            .addToBackStack(backStack)
             .replace(
                 R.id.fragmentContainer,
                 fragment)

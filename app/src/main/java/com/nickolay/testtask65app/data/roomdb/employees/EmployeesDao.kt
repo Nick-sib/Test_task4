@@ -15,6 +15,6 @@ interface EmployeesDao {
 
     @Query("SELECT employees_table.* " +
                  "FROM  employees_table INNER JOIN cross_table ON employees_table.id = cross_table.employeesId " +
-                 "WHERE cross_table.specialtyId = :sId")
+                 "WHERE cross_table.specialtyId = :sId ORDER BY employees_table.f_name, employees_table.l_name")
     fun getEmployees(sId: Long): List<EmployeesModel>
 }

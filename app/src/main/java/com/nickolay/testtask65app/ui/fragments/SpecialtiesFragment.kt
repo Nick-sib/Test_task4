@@ -8,24 +8,24 @@ import com.nickolay.testtask65app.R
 import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
 import com.nickolay.testtask65app.ui.adapters.SpecialtiesAdapter
 import com.nickolay.testtask65app.ui.base.BaseFragment
-import com.nickolay.testtask65app.ui.main.MainViewModel
 import kotlinx.android.synthetic.main.fragment_specialtys.*
 import kotlinx.android.synthetic.main.fragment_specialtys.view.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 
+@ObsoleteCoroutinesApi
+@ExperimentalCoroutinesApi
 class SpecialtiesFragment: BaseFragment<List<SpecialtyModel>>() {
 
-    override val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
+    override val viewModel: SpecialtiesViewModel by lazy {
+        ViewModelProvider(this).get(SpecialtiesViewModel::class.java)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?)
             = inflater.inflate( R.layout.fragment_specialtys, container, false)?.also {
-        it.view_pager.adapter = SpecialtiesAdapter(parentFragmentManager).apply {
-            specialtys = viewModel.dataModel
-        }
+        it.view_pager.adapter = SpecialtiesAdapter(parentFragmentManager)
 
     }
 

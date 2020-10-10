@@ -1,7 +1,6 @@
 package com.nickolay.testtask65app.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +13,17 @@ import com.nickolay.testtask65app.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_employees.*
 import kotlinx.android.synthetic.main.fragment_employees.view.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
+@ExperimentalCoroutinesApi
 class EmployeesFragment: BaseFragment<List<EmployeesModel>>() {
 
     override val coroutineContext: CoroutineContext by lazy {
         Dispatchers.Main + Job()
     }
+
 
     override val viewModel: FragmentViewModel by lazy {
         ViewModelProvider(this).get(FragmentViewModel::class.java)
@@ -54,7 +56,7 @@ class EmployeesFragment: BaseFragment<List<EmployeesModel>>() {
 
 
     companion object {
-        private val EXTRA_DATA = SpecialtiesFragment::class.java.name + "extra.DATA"
+        private val EXTRA_DATA = EmployeesFragment::class.java.name + "extra.DATA"
 
         @JvmStatic
         fun newInstance(specialtyId: Long) =

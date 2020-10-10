@@ -12,7 +12,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-class InternetProvider: DataProvider {
+class InternetProvider {
 
     //Можно конечно сделать через Retrofit или Okhttp но пока достаточно этого и не стоит пладить зависимостей где это не требуется
     //Ошибка Cleartext HTTP traffic not permitted - пока решена добавлением `s` к протоколу более верно дописать android:networkSecurityConfig
@@ -21,7 +21,7 @@ class InternetProvider: DataProvider {
     private val timeout = 10000
     private val method = "GET"
 
-    override fun getInternetData(): ReceiveChannel<DatasResult> = Channel<DatasResult>(
+    fun getInternetData(): ReceiveChannel<DatasResult> = Channel<DatasResult>(
         Channel.CONFLATED).apply {
         //TODO: Check connection, if have not internet show "no intenet view"
 

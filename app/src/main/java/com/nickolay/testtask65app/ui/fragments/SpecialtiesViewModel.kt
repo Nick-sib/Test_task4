@@ -1,7 +1,6 @@
-package com.nickolay.testtask65app.ui.main
+package com.nickolay.testtask65app.ui.fragments
 
 import androidx.annotation.VisibleForTesting
-import com.nickolay.testtask65app.data.DataAPI
 import com.nickolay.testtask65app.data.entity.Employee
 import com.nickolay.testtask65app.data.model.DatasResult
 import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
@@ -15,13 +14,9 @@ import kotlinx.coroutines.channels.consumeEach
 
 @ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
-class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
+class SpecialtiesViewModel: BaseViewModel<List<SpecialtyModel>>() {
 
-    //private val dataRepository = DataRepository()
-
-    var dataModel:List<SpecialtyModel> = emptyList()
-
-    private val internetChanel = DataAPI.loadAllData()
+    private val internetChanel = dataProvider.loadAllData()
 
     init {
         launch {
@@ -35,29 +30,28 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
         }
     }
 
-    fun formatInternetDataToDb(data: List<Employee>) {
+    private fun formatInternetDataToDb(data: List<Employee>) {
         //Можно показать сообщение что данные загружены и сохраняются на локальном устройстве
-        DataAPI.clearAllDatas()
+        dataProvider.clearAllDatas()
         data.forEach {
             val employeeId =
-                DataAPI.addEmployee(
+                dataProvider.addEmployee(
                     it.f_name.dbNameFormat(),
                     it.l_name.dbNameFormat(),
                     it.birthday.dbDataFormat(),
                     it.avatr_url.dbURLFormat()
                 )
             it.specialty.forEach { specialty ->
-                val specialtyID = DataAPI.addSpecialty(specialty.specialty_id, specialty.name)
-                DataAPI.addCrossData(employeeId, specialtyID)
+                val specialtyID = dataProvider.addSpecialty(specialty.specialty_id, specialty.name)
+                dataProvider.addCrossData(employeeId, specialtyID)
             }
         }
 
         launch {
-            val result = DataAPI.getAllSpecialties()
+            val result = dataProvider.getAllSpecialties()
             if (result.isEmpty())
                 setError(Throwable("EMPTY DATA"))
             else {
-                dataModel = result
                 setData(result)
             }
         }

@@ -1,13 +1,20 @@
 package com.nickolay.testtask65app.ui.base
 
 import androidx.lifecycle.ViewModel
+import com.nickolay.testtask65app.data.DataProviderImpl
+import com.nickolay.testtask65app.data.provider.DataProvider
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlin.coroutines.CoroutineContext
 
+@ExperimentalCoroutinesApi
 open class BaseViewModel <T>: ViewModel(), CoroutineScope {
+
+    val dataProvider: DataProvider by lazy {
+        DataProviderImpl()
+    }
 
     override val coroutineContext: CoroutineContext by lazy {
         Dispatchers.Default + Job()

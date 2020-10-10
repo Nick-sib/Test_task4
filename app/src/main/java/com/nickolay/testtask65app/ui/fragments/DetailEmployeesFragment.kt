@@ -11,7 +11,9 @@ import com.nickolay.testtask65app.ui.base.BaseFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail_employees.*
 import kotlinx.android.synthetic.main.fragment_detail_employees.view.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 class DetailEmployeesFragment: BaseFragment<List<String>>() {
 
     override val viewModel: DetailFragmentViewModel by lazy {

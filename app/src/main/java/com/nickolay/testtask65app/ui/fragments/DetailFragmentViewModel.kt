@@ -1,24 +1,24 @@
 package com.nickolay.testtask65app.ui.fragments
 
-import androidx.lifecycle.ViewModel
-import com.nickolay.testtask65app.data.DataAPI
-import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
 import com.nickolay.testtask65app.ui.base.BaseViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
-
+@ExperimentalCoroutinesApi
 class DetailFragmentViewModel: BaseViewModel<List<String>>() {
 
     var id: Long? = 0
         set(value) {
             value?.also {
                 requestSpecialties(it)
+            } ?: run {
+                setError(Throwable("EMPTY ID"))
             }
             field = value
         }
 
     private fun requestSpecialties(id: Long) = launch {
-        DataAPI.getUserSpecialties(id).also {
+        dataProvider.getUserSpecialties(id).also {
             setData(it)
         }
     }

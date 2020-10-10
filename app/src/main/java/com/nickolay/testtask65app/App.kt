@@ -1,13 +1,14 @@
 package com.nickolay.testtask65app
 
 import android.app.Application
-import androidx.fragment.app.FragmentManager
+import com.nickolay.testtask65app.data.DataProviderImpl
+import com.nickolay.testtask65app.data.provider.DataProvider
 import com.nickolay.testtask65app.data.roomdb.DbRoom
 
 class App: Application() {
 
-    val database: DbRoom by lazy {
-        DbRoom.getDatabase(this)
+    val dataProvider: DataProvider by lazy {
+        DataProviderImpl()
     }
 
     override fun onCreate() {

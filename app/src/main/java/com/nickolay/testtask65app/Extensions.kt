@@ -14,6 +14,7 @@ import java.util.*
 
 const val defBirthday: String = "-"
 const val DATEFORMAT = "dd.MM.yyyy"
+@SuppressLint("SimpleDateFormat")
 val outputDateFormat = SimpleDateFormat(DATEFORMAT)
 
 fun String.dbNameFormat() = this.toLowerCase(Locale.ROOT).capitalize(Locale.ROOT)
@@ -56,6 +57,7 @@ fun getAge26(value: String) = try {
 
 
 
+@SuppressLint("SimpleDateFormat")
 @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 fun getAge14(value: String) = try {
     outputDateFormat.parse(value)?.let{
