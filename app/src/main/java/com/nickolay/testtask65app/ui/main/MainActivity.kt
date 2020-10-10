@@ -4,13 +4,9 @@ package com.nickolay.testtask65app.ui.main
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.viewpager.widget.ViewPager
 import com.nickolay.testtask65app.R
-import com.nickolay.testtask65app.data.DataRepository
-import com.nickolay.testtask65app.data.roomdb.employees.EmployeesModel
 import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
-import com.nickolay.testtask65app.ui.SpecialtysAdapter
+import com.nickolay.testtask65app.ui.adapters.SpecialtysAdapter
 import com.nickolay.testtask65app.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 

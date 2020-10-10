@@ -5,4 +5,5 @@ import kotlinx.coroutines.channels.ReceiveChannel
 
 interface DataProvider {
     fun getInternetData(): ReceiveChannel<DatasResult>
+
 }

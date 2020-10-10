@@ -17,9 +17,9 @@ import kotlinx.coroutines.channels.consumeEach
 @ExperimentalCoroutinesApi
 class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
 
-    private val dataRepository = DataRepository()
+    //private val dataRepository = DataRepository()
 
-    private val internetChanel = dataRepository.loadAllData()
+    private val internetChanel = DataRepository.loadAllData()
 
 
     init {
@@ -36,23 +36,23 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
 
     fun formatInternetDataToDb(data: List<Employee>) {
         //Можно показать сообщение что данные загружены и сохраняются на локальном устройстве
-        dataRepository.clearAllDatas()
+        DataRepository.clearAllDatas()
         data.forEach {
             val employee_id =
-                dataRepository.addEmployee(
+                DataRepository.addEmployee(
                     it.f_name.dbNameFormat(),
                     it.l_name.dbNameFormat(),
                     it.birthday.dbDataFormat(),
                     it.avatr_url.dbURLFormat()
                 )
             it.specialty.forEach { specialty ->
-                val specialtyID = dataRepository.addSpecialty(specialty.specialty_id, specialty.name)
-                dataRepository.addCrossData(employee_id, specialtyID)
+                val specialtyID = DataRepository.addSpecialty(specialty.specialty_id, specialty.name)
+                DataRepository.addCrossData(employee_id, specialtyID)
             }
         }
 
         launch {
-            setSpecialtys(dataRepository.getAllSpecialtys())
+            setData(DataRepository.getAllSpecialtys())
         }
     }
 

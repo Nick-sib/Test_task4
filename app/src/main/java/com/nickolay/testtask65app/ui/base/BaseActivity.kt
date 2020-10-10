@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.nickolay.testtask65app.ui.main.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -36,7 +35,7 @@ abstract class BaseActivity<T>: AppCompatActivity(), CoroutineScope {
     override fun onStart() {
         super.onStart()
         dataSpecialty = launch {
-            viewModel.getSpecialtys().consumeEach {
+            viewModel.getData().consumeEach {
                 renderSpeciality(it)
             }
         }

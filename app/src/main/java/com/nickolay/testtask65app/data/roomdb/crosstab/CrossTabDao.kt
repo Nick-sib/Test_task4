@@ -13,4 +13,7 @@ interface CrossTabDao {
 
     @Query("DELETE FROM cross_table")
     fun deleteAll()
+
+    @Query("SELECT employeesId FROM cross_table WHERE specialtyId = :idSpecialty")
+    fun getEmployees(idSpecialty: Long): List<Long>
 }

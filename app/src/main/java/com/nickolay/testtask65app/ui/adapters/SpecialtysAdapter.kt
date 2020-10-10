@@ -1,10 +1,11 @@
-package com.nickolay.testtask65app.ui
+package com.nickolay.testtask65app.ui.adapters
 
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
+import com.nickolay.testtask65app.ui.fragments.EmployeesFragment
 
 
 class SpecialtysAdapter(fm: FragmentManager) :

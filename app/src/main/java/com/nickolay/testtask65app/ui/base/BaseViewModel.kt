@@ -14,18 +14,18 @@ open class BaseViewModel <T>: ViewModel(), CoroutineScope {
     }
 
 
-    private val specialtysChannel = BroadcastChannel<T>(Channel.CONFLATED)
+    private val dataChannel = BroadcastChannel<T>(Channel.CONFLATED)
 
     private val errorChannel = Channel<Throwable>()
 
-    fun getSpecialtys(): ReceiveChannel<T> = specialtysChannel.openSubscription()
+    fun getData(): ReceiveChannel<T> = dataChannel.openSubscription()
 
     fun getErrorChannel(): ReceiveChannel<Throwable> = errorChannel
 
 
 
-    protected fun setSpecialtys(data: T) = launch {
-        specialtysChannel.send(data)
+    protected fun setData(data: T) = launch {
+        dataChannel.send(data)
     }
 
     protected fun setError(e: Throwable) = launch {
@@ -34,7 +34,7 @@ open class BaseViewModel <T>: ViewModel(), CoroutineScope {
 
 
     override fun onCleared() {
-        specialtysChannel.close()
+        dataChannel.close()
 
         errorChannel.close()
         coroutineContext.cancel()

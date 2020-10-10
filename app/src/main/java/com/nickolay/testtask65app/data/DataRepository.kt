@@ -1,15 +1,22 @@
 package com.nickolay.testtask65app.data
 
+import android.util.Log
 import com.nickolay.testtask65app.App
 import com.nickolay.testtask65app.data.entity.Employees
+import com.nickolay.testtask65app.data.model.DatasResult
 import com.nickolay.testtask65app.data.provider.DataProvider
 import com.nickolay.testtask65app.data.provider.InternetProvider
 import com.nickolay.testtask65app.data.roomdb.crosstab.CrossTabModel
 import com.nickolay.testtask65app.data.roomdb.employees.EmployeesModel
 import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.runBlocking
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
-class DataRepository {
+object DataRepository {
 
     private val internetProvider: DataProvider by lazy {
         InternetProvider()
@@ -50,14 +57,11 @@ class DataRepository {
 
     fun getAllSpecialtys() = dbSpecialty.getSpecialty()
 
-//    suspend fun getEmployees(specialtyId: Int) =
-//        dbProvider.getEmployeesDao().getEmployees(specialtyId)
-
-
-
-    suspend fun reloadData(dataList: Employees) {
-
-        //dbProvider.updateData(listWorkers)
+    suspend fun getEmployeesById(id: Long): List<EmployeesModel> = suspendCoroutine{
+        it.resume(dbCrossTab.getEmployees(id) as List<EmployeesModel>)
     }
+
+
+
 
 }
