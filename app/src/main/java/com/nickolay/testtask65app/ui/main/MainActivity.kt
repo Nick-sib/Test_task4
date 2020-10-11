@@ -8,6 +8,7 @@ import com.nickolay.testtask65app.data.roomdb.specialty.SpecialtyModel
 import com.nickolay.testtask65app.ui.adapters.SpecialtiesAdapter
 import com.nickolay.testtask65app.ui.base.BaseActivity
 import com.nickolay.testtask65app.ui.fragments.SpecialtiesViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_specialtys.view_pager
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -30,7 +31,7 @@ class MainActivity: BaseActivity<List<SpecialtyModel>>() {
         instance = this
 
         view_pager.adapter = SpecialtiesAdapter(supportFragmentManager)
-
+        tabs.setupWithViewPager(view_pager)
 
     }
 

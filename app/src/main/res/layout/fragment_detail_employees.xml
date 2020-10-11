@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/ivEmployees"
-        android:layout_width="110dp"
+        android:layout_width="0dp"
         android:layout_height="110dp"
         android:contentDescription="@string/employe_photo_description"
         android:padding="10dp"
