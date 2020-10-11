@@ -17,14 +17,14 @@ abstract class BaseFragment<T>: Fragment(), CoroutineScope {
 
     abstract val viewModel: BaseViewModel<T>
 
-    private lateinit var dataSpecialty: Job
+    private lateinit var dataJob: Job
     private lateinit var errorJob: Job
 
 
     @ObsoleteCoroutinesApi
     override fun onStart() {
         super.onStart()
-        dataSpecialty = launch {
+        dataJob = launch {
             viewModel.getData().consumeEach {
                 renderData(it)
             }
@@ -39,7 +39,7 @@ abstract class BaseFragment<T>: Fragment(), CoroutineScope {
     }
 
     override fun onStop() {
-        dataSpecialty.cancel()
+        dataJob.cancel()
         errorJob.cancel()
         super.onStop()
     }

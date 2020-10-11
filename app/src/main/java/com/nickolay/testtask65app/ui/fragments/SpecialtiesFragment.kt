@@ -29,7 +29,7 @@ class SpecialtiesFragment: BaseFragment<List<SpecialtyModel>>() {
     }
 
     override fun renderData(data: List<SpecialtyModel>) {
-        (view_pager.adapter as SpecialtiesAdapter).specialtys = data
+        (view_pager.adapter as SpecialtiesAdapter).specialties = data
     }
 
     companion object {
