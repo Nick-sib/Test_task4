@@ -23,10 +23,9 @@ class SpecialtiesFragment: BaseFragment<List<SpecialtyModel>>() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?)
-            = inflater.inflate( R.layout.fragment_specialtys, container, false)?.also {
-        it.view_pager.adapter = SpecialtiesAdapter(parentFragmentManager)
-
+        savedInstanceState: Bundle?)=
+        inflater.inflate( R.layout.fragment_specialtys, container, false)?.apply {
+            view_pager.adapter = SpecialtiesAdapter(parentFragmentManager)
     }
 
     override fun renderData(data: List<SpecialtyModel>) {
@@ -35,10 +34,18 @@ class SpecialtiesFragment: BaseFragment<List<SpecialtyModel>>() {
 
     companion object {
 
+//        get() = {
+//            this?.let {
+//                this } ?: let {
+//                this = SpecialtiesFragment()
+//                this
+//            }
+
+
        //private val EXTRA_DATA = SpecialtiesFragment::class.java.name + "extra.DATA"
 
-       @JvmStatic
-        fun newInstance() = SpecialtiesFragment()
+        @JvmStatic
+       fun newInstance() = SpecialtiesFragment()
     }
 
 }

@@ -54,6 +54,7 @@ class DetailEmployeesFragment: BaseFragment<List<String>>() {
                 .removeSuffix("]")
     }
 
+
     companion object {
         private val EXTRA_DATA = DetailEmployeesFragment::class.java.name + "extra.DATA"
 

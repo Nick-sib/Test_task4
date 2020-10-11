@@ -19,19 +19,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         instance = this
 
-        showFragment("ListData", SpecialtiesFragment.newInstance())
-
-
+        showFragment("Specialties", SpecialtiesFragment.newInstance())
     }
 
-    fun showFragment(backStack: String, fragment: Fragment){
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(backStack)
-            .replace(
-                R.id.fragmentContainer,
-                fragment)
-            .commit()
+    fun showFragment(backStack: String? = null, fragment: Fragment?) {
+        fragment?.run {
+            backStack?.run {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.fragmentContainer,
+                        fragment
+                    )
+                    .commit()
+            } ?: run {
+                supportFragmentManager
+                    .beginTransaction()
+                    .addToBackStack(backStack)
+                    .replace(
+                        R.id.fragmentContainer,
+                        fragment
+                    )
+                    .commit()
+            }
+        }
     }
 
     companion object {

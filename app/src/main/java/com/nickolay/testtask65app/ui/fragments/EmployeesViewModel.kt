@@ -6,7 +6,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
-class FragmentViewModel: BaseViewModel<List<EmployeesModel>>() {
+class EmployeesViewModel: BaseViewModel<List<EmployeesModel>>() {
 
     var id: Long = 0
     set(value) {
