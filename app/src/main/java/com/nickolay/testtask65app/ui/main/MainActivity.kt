@@ -20,7 +20,7 @@ class MainActivity: BaseActivity<List<SpecialtyModel>>() {
     override val viewModel: SpecialtiesViewModel by lazy {
         ViewModelProvider(this).get(SpecialtiesViewModel::class.java)
     }
-
+//
     override fun renderData(data: List<SpecialtyModel>) {
         (view_pager.adapter as SpecialtiesAdapter).specialties = data
     }
